@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OryzaProduction.Co</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- STYLE -->
+    <style>
+
+        html{
+            scroll-behavior: smooth;
+        }
+
+        body{
+            background-color: #f5f7fa;
+            font-family: Arial, sans-serif;
+        }
+
+        /* NAVBAR */
+        .custom-navbar{
+            background: linear-gradient(to right,#071b11,#102515);
+            padding: 12px 0;
+        }
+
+        .navbar-brand{
+            font-size: 1.5rem;
+        }
+
+        .nav-link{
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover{
+            color: #E3EF26 !important;
+        }
+
+        /* HERO */
+        .hero{
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(to right,#0C324C,#076653,#E3EF26);
+            color: white;
+        }
+
+        .hero h1{
+            font-size: clamp(2rem,5vw,4.5rem);
+            font-weight: bold;
+        }
+
+        .hero p{
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* SECTION */
+        .section-title{
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        .bg-soft{
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        /* CARD */
+        .card{
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .card:hover{
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card img{
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* CAROUSEL */
+        .carousel img{
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .carousel-item{
+            position: relative;
+        }
+
+        .carousel-item::before{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.25);
+            top: 0;
+            left: 0;
+            border-radius: 20px;
+        }
+
+        /* CONTACT */
+        textarea{
+            resize: none;
+        }
+
+        /* TRUST BADGES */
+        .trust-badge{
+            background: white;
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: 0.3s;
+        }
+
+        .trust-badge:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .trust-badge .badge-icon{
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .trust-badge h3{
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #076653;
+            margin-bottom: 4px;
+        }
+
+        .trust-badge p{
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0;
+        }
+
+        /* SOCIAL BUTTONS */
+        .social-btn{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .social-btn:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .social-btn.wa{
+            background: #25D366;
+            color: white;
+        }
+
+        .social-btn.ig{
+            background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+            color: white;
+        }
+
+        .social-btn.email{
+            background: transparent;
+            color: white;
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        .social-btn.email:hover{
+            background: white;
+            color: #102515;
+        }
+
+        /* PRIVACY LINK */
+        .privacy-link{
+            color: #076653;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* FORM SECURITY BADGE */
+        .form-security{
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* FOOTER */
+        footer{
+            background: #102515;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer .footer-divider{
+            border-color: rgba(255,255,255,0.15);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        footer .footer-contact-row{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:992px){
+
+            .carousel img{
+                height: 420px;
+            }
+
+        }
+
+        @media(max-width:768px){
+
+            .hero{
+                min-height: 75vh;
+                padding: 70px 20px;
+            }
+
+            .carousel img{
+                height: 300px;
+            }
+
+            .card img{
+                height: 220px;
+            }
+
+        }
+
+        @media(max-width:576px){
+
+            .hero h1{
+                font-size: 2.2rem;
+            }
+
+            .hero p{
+                font-size: 0.95rem;
+            }
+
+            .carousel img{
+                height: 220px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar shadow-sm fixed-top">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="#">
+                OryzaProduction.Co
+            </a>
+
+            <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ms-auto text-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#beranda">Beranda</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#produk">Produk</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#galeri">Collection</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimoni">Testimoni</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <!-- HERO -->
+    <section id="beranda" class="hero">
+
+        <div class="container">
+
+            <h1>
+                Good Clothes Good Life
+            </h1>
+
+            <p class="lead mt-4">
+                OryzaProduction.Co menghadirkan produk fashion modern
+                dengan kualitas premium, desain stylish, dan kenyamanan
+                maksimal untuk mendukung gaya hidup Anda.
+            </p>
+
+            <a href="#produk" class="btn btn-warning btn-lg mt-4 fw-bold px-4">
+                Shop Now
+            </a>
+
+        </div>
+
+    </section>
+    
+    <!-- PRODUCTS -->
+    <section id="produk" class="container py-5">
+
+        <h2 class="section-title">
+            Our Products
+        </h2>
+
+        <div class="row g-4">
+
+            <!-- CARD 1 -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="https://www.tokopedia.com/oryzaproduction/better-shirt-tshirt-pria-wanita-bahan-premium-combed-30s?extParam=ivf%3Dfalse%26src%3Dsearch%26search%3D1%26page%3D1%26srp_component_id%3D02.01.00.00%26srp_page_id%3D02." target="_blank" class="text-decoration-none text-dark">
+
+                    <div class="card h-100">
+
+                        <img src="tshit2.jpg" class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                Better Shirt
+                            </h5>
+
+                            <p class="card-text">
+                                Tshirt modern dengan bahan premium yang nyaman dipakai sehari-hari.
+                            </p>
+
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-sm-6 col-lg-3">
+                <a href="https://www.tokopedia.com/oryzaproduction/better-cap?extParam=ivf%3Dfalse%26src%3Dsearch%26search%3D1%26page%3D1%26srp_component_id%3D02.01.00.00%26srp_page_id%3D02." target="_blank" class="text-decoration-none text-dark">
+
+                        <div class="card h-100">
+
+                            <img src="cap.jpg" class="card-img-top">
+
+                            <div class="card-body">
+
+                                <h5 class="card-title">
+                                    Better Cap
+                                </h5>
+
+                                <p class="card-text">
+                                    Cap stylish dengan desain modern dan nyaman digunakan.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                </a>
+
+            </div>
+
+                <!-- CARD 3 -->
+                <div class="col-sm-6 col-lg-3">
+                <a href="https://www.tokopedia.com/oryzaproduction/better-hoodie?extParam=ivf%3Dfalse%26src%3Dsearch%26search%3D1%26page%3D1%26srp_component_id%3D02.01.00.00%26srp_page_id%3D02." target="_blank" class="text-decoration-none text-dark">
+
+                    <div class="card h-100">
+
+                        <img src="Hoodie1.jpg" class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                Better Hoodie
+                            </h5>
+
+                            <p class="card-text">
+                                Hoodie hangat dengan desain fashionable untuk berbagai suasana.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+             </div>
+
+            <!-- CARD 4 -->
+             <div class="col-sm-6 col-lg-3">
+                <a href="https://www.tokopedia.com/oryzaproduction/better-bag?extParam=ivf%3Dfalse%26src%3Dsearch%26search%3D1%26page%3D1%26srp_component_id%3D02.01.00.00%26srp_page_id%3D02." target="_blank" class="text-decoration-none text-dark">
+                
+
+                    <div class="card h-100">
+
+                        <img src="Bag1.jpg" class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                Better Bag
+                            </h5>
+
+                            <p class="card-text">
+                                Tas premium dengan desain elegan dan kualitas terbaik.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </a>
+        </div>
+
+    </section>
+
+    <!-- COLLECTION -->
+    <section id="galeri" class="container py-5">
+
+        <div class="bg-soft">
+
+            <h2 class="section-title">
+                Today's Collection
+            </h2>
+
+            <div id="carouselExample"
+                class="carousel slide shadow"
+                data-bs-ride="carousel">
+
+                <div class="carousel-inner rounded">
+
+                    <div class="carousel-item active">
+                        <img src="Collection.png" class="d-block w-100">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="Collection1.png" class="d-block w-100">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="Collection2.png" class="d-block w-100">
+                    </div>
+
+                </div>
+
+                <button class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+
+                    <span class="carousel-control-prev-icon"></span>
+
+                </button>
+
+                <button class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+
+                    <span class="carousel-control-next-icon"></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TESTIMONI -->
+    <section id="testimoni" class="container py-5">
+
+        <h2 class="section-title">
+            Apa Kata Mereka?
+        </h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+
+                <div class="card h-100 p-3">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Fashionista123
+                        </h5>
+
+                        <p class="card-text">
+                            "Produk sangat nyaman dipakai dan kualitasnya premium.
+                            Desainnya juga sangat stylish."
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card h-100 p-3">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            JokowiMania22
+                        </h5>
+
+                        <p class="card-text">
+                            "Pengiriman cepat dan kualitas produk sesuai ekspektasi.
+                            Recommended banget!"
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card h-100 p-3">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Pak Prabogo
+                        </h5>
+
+                        <p class="card-text">
+                            "Brand lokal dengan kualitas yang tidak kalah dari produk luar negeri."
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card h-100 p-3">
+
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            Fathan Eka Wirabuana
+                        </h5>
+
+                        <p class="card-text">
+                            "Kami selalu berkomitmen memberikan kualitas terbaik
+                            untuk seluruh pelanggan."
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="container py-5">
+
+        <div class="bg-soft">
+
+            <h2 class="section-title">
+                About Us
+            </h2>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+
+                    <div class="card h-100">
+
+                        <img src="kain.jpg" class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                Premium Quality
+                            </h5>
+
+                            <p class="card-text">
+                                Kami menggunakan material berkualitas tinggi untuk kenyamanan maksimal.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card h-100">
+
+                        <img src="modern.jpg" class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                Modern Design
+                            </h5>
+
+                            <p class="card-text">
+                                Menghadirkan desain modern yang cocok untuk berbagai gaya fashion.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card h-100">
+
+                        <img src="lokal.jpg" class="card-img-top">
+
+                        <div class="card-body">
+
+                            <h5 class="card-title">
+                                Local Brand
+                            </h5>
+
+                            <p class="card-text">
+                                Bangga menjadi brand lokal Indonesia dengan kualitas internasional.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =============================== -->
+    <!-- POIN 3: CONTACT + PRIVACY POLICY -->
+    <!-- =============================== -->
+    <section id="contact" class="container py-5">
+
+        <h2 class="section-title">
+            Contact Us
+        </h2>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card p-4">
+
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" name="nama" class="form-control" placeholder="Masukkan nama Anda" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" placeholder="Masukkan email Anda" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Pesan</label>
+                            <textarea name="pesan" class="form-control" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                        </div>
+
+                        <!-- PRIVACY CHECKBOX -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="privacyCheck" required>
+                            <label class="form-check-label small" for="privacyCheck">
+                                Saya menyetujui data saya digunakan sesuai
+                                <span class="privacy-link" data-bs-toggle="modal" data-bs-target="#privacyModal">
+                                    Kebijakan Privasi
+                                </span>
+                                OryzaProduction.Co
+                            </label>
+                        </div>
+
+                        <!-- SECURITY NOTE -->
+                        <div class="form-security mb-3">
+                            <span>Data Anda aman dan tidak akan disebarkan kepada pihak ketiga.</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark w-100 fw-bold py-2">
+                            Kirim Pesan
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =============================== -->
+    <!-- POIN 2: FOOTER + KONTAK RESMI   -->
+    <!-- =============================== -->
+    <footer>
+
+        <h4 class="fw-bold">OryzaProduction.Co</h4>
+
+        <p class="mb-1">Better Clothes For Better Life</p>
+
+        <hr class="footer-divider">
+
+        <!-- SOCIAL MEDIA & CONTACT BUTTONS -->
+        <div class="footer-contact-row">
+
+            <a href="https://wa.me/6281234567890"
+               class="social-btn wa"
+               target="_blank">
+                WhatsApp
+            </a>
+
+            <a href="https://instagram.com/oryzaproduction"
+               class="social-btn ig"
+               target="_blank">
+                Instagram
+            </a>
+
+            <a href="mailto:oryzaproduction@email.com"
+               class="social-btn email">
+                Email Kami
+            </a>
+
+        </div>
+
+        <!-- ALAMAT -->
+        <p class="mt-3 mb-1 small" style="color: rgba(255,255,255,0.65);">
+            📍 Bandung, Jawa Barat, Indonesia
+        </p>
+
+        <hr class="footer-divider">
+
+        <small style="color: rgba(255,255,255,0.5);">
+            © 2026 OryzaProduction.Co — All Rights Reserved
+        </small>
+
+    </footer>
+
+    <!-- =============================== -->
+    <!-- MODAL KEBIJAKAN PRIVASI         -->
+    <!-- =============================== -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 20px; border: none;">
+
+                <div class="modal-header" style="background: linear-gradient(to right,#071b11,#102515); border-radius: 20px 20px 0 0;">
+                    <h5 class="modal-title text-white fw-bold" id="privacyModalLabel">
+                        🔒 Kebijakan Privasi
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body p-4">
+
+                    <p class="fw-semibold">OryzaProduction.Co berkomitmen melindungi privasi Anda.</p>
+
+                    <p><strong>Data yang dikumpulkan:</strong><br>
+                    Nama, alamat email, dan pesan yang Anda kirimkan melalui form kontak di website ini.</p>
+
+                    <p><strong>Penggunaan data:</strong><br>
+                    Data hanya digunakan untuk merespons pertanyaan atau pesan Anda, dan tidak akan diberikan, dijual, atau disebarkan kepada pihak ketiga manapun.</p>
+
+                    <p><strong>Keamanan data:</strong><br>
+                    Kami menggunakan sistem pengiriman pesan yang aman untuk memastikan data Anda terlindungi selama proses transmisi.</p>
+
+                    <p class="mb-0"><strong>Kontak:</strong><br>
+                    Jika ada pertanyaan terkait kebijakan privasi ini, silakan hubungi kami melalui
+                    <a href="mailto:oryzaproduction@email.com" style="color:#076653;">oryzaproduction@email.com</a>.</p>
+
+                </div>
+
+                <div class="modal-footer" style="border-top: 1px solid #eee;">
+                    <button type="button" class="btn btn-dark px-4 rounded-pill" data-bs-dismiss="modal">
+                        Saya Mengerti
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
